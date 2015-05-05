@@ -1,0 +1,53 @@
+\documentclass[twocolumn]{preport}
+\usepackage[dvipdfm]{graphicx}
+
+\title{1192年度 研究要旨: \\
+プログレスレポートのテンプレート}
+\author{1192年 源頼朝}
+
+\begin{document}
+
+\pagestyle{empty}
+\maketitle
+\thispagestyle{empty}
+\sloppy
+
+\section{はじめに}
+
+本稿はプログレスレポートのテンプレートである\cite{Sakai}．
+
+図は\figref{nowprinting}や\tabref{sample}として参照する．
+
+\begin{figure}[tbh]
+ \begin{center}
+  \begin{minipage}{0.3\columnwidth}
+   \includegraphics[width=\columnwidth]{fig/nowprinting.eps}
+   \caption{eps図の参考例}
+  \end{minipage}
+  \hspace{0.15\columnwidth}
+  \begin{minipage}{0.3\columnwidth}
+   \includegraphics[width=\columnwidth]{fig/dj.jpg}
+   \caption{jpg図の参考例}
+  \end{minipage}
+  \label{figure:nowprinting}
+ \end{center}
+\end{figure}
+
+\begin{table}[tbh]
+ \begin{center}
+  \begin{tabular}{|l|r|} \hline
+  A1 & B1 \\
+  A2 & B2 \\ \hline
+  \end{tabular}
+  \caption{図の参考例}
+  \label{table:sample}
+ \end{center}
+\end{table}
+
+\section{おわりに}
+
+\bibliographystyle{junsrt}
+\bibliography{p-report}
+
+\end{document}
+

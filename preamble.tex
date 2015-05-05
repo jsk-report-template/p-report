@@ -1,0 +1,59 @@
+\newcommand{\figref}[1]{Fig\ref{#1}}
+\newcommand{\tabref}[1]{表\ref{#1}}
+\newcommand{\equref}[1]{式(\ref{#1})}
+\newcommand{\chapref}[1]{第\ref{#1}章}
+\newcommand{\secref}[1]{\ref{#1}節}
+\newcommand{\termref}[1]{\ref{#1}項}
+% \newcommand{\enumref}[1]{[\ref{#1}]}
+\def\figurename{Fig }
+
+\newcommand{\namelistlabel}[1]{\mbox{#1}\hfil}
+\newenvironment{namelist}[2]{%
+\begin{list}{}
+  {
+  \let\makelabel\namelistlabel
+  \setlength{\labelwidth}{#1}
+  \setlength{\leftmargin}{#2}
+  }
+}{%
+\end{list}}
+
+\newenvironment{newfig}[2]%
+{\begin{figure}[hbtp]
+\begin{center}
+\epsfile{file=#1,width=#2}}%
+{\end{center}
+\end{figure}}
+
+\newenvironment{myitemize}%
+{\begin{itemize}
+\setlength{\itemsep}{0mm}
+\setlength{\parsep}{0mm}}%
+{\end{itemize}}
+
+\newenvironment{myenumerate}%
+{\begin{enumerate}
+\renewcommand{\labelenumi}{[\arabic{enumi}]}
+\setlength{\itemsep}{0mm}
+\setlength{\parsep}{0mm}}%
+{\end{enumerate}}
+
+\setlength{\headheight}{0mm}
+\setlength{\headsep}{0mm}
+\setlength{\textheight}{25.5cm}
+\setlength{\textwidth}{17cm}
+\setlength{\oddsidemargin}{-4mm}
+\setlength{\evensidemargin}{-4mm}
+\setlength{\topmargin}{-5mm}
+\setlength{\columnsep}{12.0mm}
+\setlength{\columnseprule}{0.1pt}
+\setlength{\topsep}{1pt}
+\setlength{\partopsep}{1pt}
+\setlength{\parsep}{1pt}
+\setlength{\itemsep}{0pt}
+
+%%% added by Y.Matsumoto  1993.02.07 %%%
+
+\sectionfont{\normalsize\bf}{\normalsize\bf}{\normalsize\bf}
+%\def\thesection {\Roman{section}}
+\def\thesection {\arabic{section}}
