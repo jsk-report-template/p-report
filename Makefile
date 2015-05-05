@@ -1,40 +1,33 @@
-QKC = nkf -w8 --overwrite
-LATEX =  platex -kanji=utf8 -src-specials -interaction=nonstopmode
-BIBTEX = pbibtex -kanji=utf8
-DVIPDF = dvipdfmx
-
-.SUFFIXES: .txt .tex .bbl .bb .jpg
+BUILDDIR=build
 FILE=p-report
+OPEN=evince #open
 
-JPEG_FILES = $(shell find fig -name *.jpg)
-BB_FILES = $(patsubst %.jpg,%.bb,$(JPEG_FILES))
-
-.jpg.bb:
-	ebb -b ./$< ; if [ -e $(@F) ]; then mv $(@F) $@; fi
+COPYFILES= $(BUILDDIR)/$(FILE).tex $(BUILDDIR)/$(FILE).bib $(BUILDDIR)/$(FILE).ps $(BUILDDIR)/preamble.tex $(BUILDDIR)/preport.cls $(BUILDDIR)/fig
 
 all: $(FILE).pdf
 
-nj: $(BB_FILES)
-	$(LATEX) $(FILE).tex
+$(FILE).pdf: $(BUILDDIR)/$(FILE).pdf $(COPYFILES)
+	cp -f $(BUILDDIR)/$(FILE).pdf $(FILE).pdf
+	$(OPEN) $(FILE).pdf
 
-jb:
-	$(BIBTEX) $(FILE)
+$(BUILDDIR)/$(FILE).pdf: $(COPYFILES)
+	cd $(BUILDDIR); make
 
-$(FILE).dvi: $(FILE).tex
-	make nj
-	make jb
-	make nj
-	make nj
-	@echo "========================================"
-	@grep War *.log | cat
-	@echo "========================================"
+$(BUILDDIR)/$(FILE).tex: $(FILE).tex
+$(BUILDDIR)/$(FILE).bib: $(FILE).bib
+$(BUILDDIR)/$(FILE).ps: $(FILE).ps
+$(BUILDDIR)/preamble.tex: preamble.tex
+$(BUILDDIR)/preport.cls: preport.cls
+$(BUILDDIR)/fig:
+	cp -rf fig $(BUILDDIR)/fig
 
-
-$(FILE).pdf: $(FILE).dvi
-	$(DVIPDF) $(FILE).dvi
+$(BUILDDIR)/%:
+	cp -f $< $@
 
 clean:
-	rm -f *~ *.aux *.log *.bbl *.blg *.pbm fig/*.bb
+	cd $(BUILDDIR); make clean
 
-distclean: clean
-	rm -f *.pdf *.dvi
+wipe:
+	cd $(BUILDDIR); make wipe
+	rm -f $(FILE).pdf
+	rm -rf $(COPYFILES)
