@@ -1,6 +1,12 @@
 BUILDDIR=build
+OS=$(shell uname -s)
 FILE=p-report
-OPEN=evince #open
+ifeq ($(OS), Linux)
+	OPEN=evince #open
+endif
+ifeq ($(OS), Darwin)
+	OPEN=open
+endif
 
 COPYFILES= $(BUILDDIR)/$(FILE).tex $(BUILDDIR)/$(FILE).bib $(BUILDDIR)/$(FILE).ps $(BUILDDIR)/preamble.tex $(BUILDDIR)/preport.cls $(BUILDDIR)/fig
 
