@@ -23,6 +23,11 @@ forever: preinstall
 open: preinstall
 	omake preview
 
+publish: preinstall
+	-find . -name '*.tex' -print0 | xargs -0 sed -i '' -e 's/、/，/g'
+	-find . -name '*.tex' -print0 | xargs -0 sed -i '' -e 's/。/．/g'
+	omake preview
+
 clean: preinstall
 	omake clean
 
