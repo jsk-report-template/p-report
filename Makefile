@@ -1,39 +1,33 @@
-BUILDDIR=build
+###########################################################
+# Thesis Generator for Creative Informatics
+# Author: Yuki Furuta <furushchev@jsk.imi.i.u-tokyo.ac.jp>
+# Date: 2015/11/12
+###########################################################
+
+
+.PHONY: all open clean wipe forever preinstall
 OS=$(shell uname -s)
-FILE=p-report
 ifeq ($(OS), Linux)
-	OPEN=evince #open
+	PREINSTALL=sudo apt-get install -y omake fam
 endif
 ifeq ($(OS), Darwin)
-	OPEN=open
+	PREINSTALL=brew install opam && opam init && eval `opam config env` && opam install omake
 endif
 
-COPYFILES= $(BUILDDIR)/$(FILE).tex $(BUILDDIR)/$(FILE).bib $(BUILDDIR)/$(FILE).ps $(BUILDDIR)/preamble.tex $(BUILDDIR)/preport.cls $(BUILDDIR)/fig
+all: preinstall
+	omake
 
-all: $(FILE).pdf
+forever: preinstall
+	omake -P
 
-$(FILE).pdf: $(BUILDDIR)/$(FILE).pdf $(COPYFILES)
-	cp -f $(BUILDDIR)/$(FILE).pdf $(FILE).pdf
-	$(OPEN) $(FILE).pdf
+open: preinstall
+	omake preview
 
-$(BUILDDIR)/$(FILE).pdf: $(COPYFILES)
-	cd $(BUILDDIR); make
+clean: preinstall
+	omake clean
 
-$(BUILDDIR)/$(FILE).tex: $(FILE).tex
-$(BUILDDIR)/$(FILE).bib: $(FILE).bib
-$(BUILDDIR)/$(FILE).ps: $(FILE).ps
-$(BUILDDIR)/preamble.tex: preamble.tex
-$(BUILDDIR)/preport.cls: preport.cls
-$(BUILDDIR)/fig:
-	cp -rf fig $(BUILDDIR)/fig
+wipe: clean
+	rm -f .omakedb* *.omc
 
-$(BUILDDIR)/%:
-	cp -f $< $@
-
-clean:
-	cd $(BUILDDIR); make clean
-
-wipe:
-	cd $(BUILDDIR); make wipe
-	rm -f $(FILE).pdf
-	rm -rf $(COPYFILES)
+preinstall:
+	@if ! which omake > /dev/null; then $(PREINSTALL); fi
