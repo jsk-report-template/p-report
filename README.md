@@ -1,6 +1,8 @@
 # p-report
+
 Latex template for short thesis
----
+
+[![Build Status](https://travis-ci.org/furushchev/p-report-template.svg)](https://travis-ci.org/furushchev/p-report-template)
 
 ### 1. Prerequisities
 
@@ -18,6 +20,13 @@ $ sudo apt-get install texlive-lang-cjk
 ```bash
 $ make
 ```
+
+### 4. Release pdf
+
+1. fetch github token, and edit `.travis.yml`
+2. Tag by `git --tag <your tag>`
+3. `git push --tag`
+4. you can check pdf in `releases` page.
 
 ### Optional. cleaning
 

@@ -12,7 +12,7 @@ ifeq ($(OS), Linux)
 	TEX_INSTALL=sudo apt-get install -y -qq texlive texlive-lang-cjk texlive-science texlive-fonts-recommended texlive-fonts-extra xdvik-ja dvipsk-ja gv
 endif
 ifeq ($(OS), Darwin)
-	OMAKE_INSTALL=brew install -y opam && yes | opam init -y -j4 -q && eval `opam config env` && opam install omake -y -j4 -q
+	OMAKE_INSTALL=brew install -y opam && opam init -y -j4 -q && eval `opam config env` && opam install omake -y -j4 -q
 	TEX_INSTALL=brew install -y caskroom/cask/brew-cask && brew cask install -y mactex && sudo tlmgr update --self --all
 endif
 
