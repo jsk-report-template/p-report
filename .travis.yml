@@ -12,7 +12,7 @@ before_script:
 - if [ $TRAVIS_OS_NAME == "osx" ]; then brew update -y; else sudo apt-get update -y -qq; fi
 - if [ $TRAVIS_OS_NAME != "osx" ]; then sudo apt-get install -y -qq build-essential; fi
 script:
-- make pub
+- make pub VERBOSE=1
 deploy:
   provider: releases
   api_key:
