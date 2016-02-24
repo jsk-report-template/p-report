@@ -12,8 +12,8 @@ ifeq ($(OS), Linux)
 	TEX_INSTALL=sudo apt-get install -y -qq texlive texlive-lang-cjk texlive-science texlive-fonts-recommended texlive-fonts-extra xdvik-ja dvipsk-ja gv
 endif
 ifeq ($(OS), Darwin)
-	OMAKE_INSTALL=brew install opam && opam init && eval `opam config env` && opam install omake
-	TEX_INSTALL=brew install caskroom/cask/brew-cask && brew install mactex && sudo tlmgr update --self --all
+	OMAKE_INSTALL=brew install -y opam && yes | opam init -y -j4 -q && eval `opam config env` && opam install omake -y -j4 -q
+	TEX_INSTALL=brew install -y caskroom/cask/brew-cask && brew install -y mactex && sudo tlmgr update --self --all
 endif
 
 all: preinstall
@@ -33,7 +33,7 @@ clean: preinstall
 	omake clean
 
 wipe: clean
-	rm -f .omakedb* *.omc
+	git clean -X -f -i -e '.tex'
 
 preinstall:
 	@if ! which omake > /dev/null; then $(OMAKE_INSTALL); fi
