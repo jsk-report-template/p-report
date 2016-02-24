@@ -13,7 +13,7 @@ ifeq ($(OS), Linux)
 endif
 ifeq ($(OS), Darwin)
 	OMAKE_INSTALL=brew install -y opam && yes | opam init -y -j4 -q && eval `opam config env` && opam install omake -y -j4 -q
-	TEX_INSTALL=brew install -y caskroom/cask/brew-cask && brew install -y mactex && sudo tlmgr update --self --all
+	TEX_INSTALL=brew install -y caskroom/cask/brew-cask && brew cask install -y mactex && sudo tlmgr update --self --all
 endif
 
 all: preinstall
