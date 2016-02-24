@@ -5,13 +5,15 @@
 ###########################################################
 
 
-.PHONY: all open clean wipe forever preinstall
+.PHONY: all open clean wipe forever preinstall pub publish
 OS=$(shell uname -s)
 ifeq ($(OS), Linux)
-	PREINSTALL=sudo apt-get install -y omake fam
+	OMAKE_INSTALL=sudo apt-get install -y -qq omake fam
+	TEX_INSTALL=sudo apt-get install -y -qq texlive texlive-lang-cjk texlive-science texlive-fonts-recommended texlive-fonts-extra xdvik-ja dvipsk-ja gv
 endif
 ifeq ($(OS), Darwin)
-	PREINSTALL=brew install opam && opam init && eval `opam config env` && opam install omake
+	OMAKE_INSTALL=brew install opam && opam init && eval `opam config env` && opam install omake
+	TEX_INSTALL=brew install caskroom/cask/brew-cask && brew install mactex && sudo tlmgr update --self --all
 endif
 
 all: preinstall
@@ -24,9 +26,8 @@ open: preinstall
 	omake preview
 
 publish: preinstall
-	-find . -name '*.tex' -print0 | xargs -0 sed -i '' -e 's/、/，/g'
-	-find . -name '*.tex' -print0 | xargs -0 sed -i '' -e 's/。/．/g'
-	omake preview
+	omake publish
+pub: publish
 
 clean: preinstall
 	omake clean
@@ -35,4 +36,5 @@ wipe: clean
 	rm -f .omakedb* *.omc
 
 preinstall:
-	@if ! which omake > /dev/null; then $(PREINSTALL); fi
+	@if ! which omake > /dev/null; then $(OMAKE_INSTALL); fi
+	@if ! which platex > /dev/null; then $(TEX_INSTALL); fi
