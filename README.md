@@ -36,7 +36,7 @@ $ make
 deploy:
   provider: releases
   api_key: "GITHUB OAUTH TOKEN"
-  file: main.pdf
+  file: p-report.pdf
   skip_cleanup: true
   on:
     tags: true
