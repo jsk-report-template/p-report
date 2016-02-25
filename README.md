@@ -1,6 +1,6 @@
-# p-report
+# p-report-template
 
-Latex template for short thesis
+Latex template for p-report
 
 [![Build Status](https://travis-ci.org/furushchev/p-report-template.svg)](https://travis-ci.org/furushchev/p-report-template)
 
@@ -12,7 +12,7 @@ $ sudo apt-add-repository ppa:texlive-backports/ppa
 $ sudo apt-get update
 ```
 
-### 2. Edit `p-report.tex`
+### 2. Edit LaTeX files
 
 ### 3. Make pdf
 
@@ -30,7 +30,22 @@ $ make
   travis setup releases --force
 ```
 
-- Push your tag by `git push --tag`. Then you can watch pdf in github releases.
+- After `travis` command, configuration like below will be appended to `.travis.yml`.
+
+  ```yaml
+deploy:
+  provider: releases
+  api_key: "GITHUB OAUTH TOKEN"
+  file: main.pdf
+  skip_cleanup: true
+  on:
+    tags: true
+```
+
+**NOTE** Please make sure you have `skip_cleanup` and `on: tags` is `true`
+
+
+- Push your tag by `git push --tags`. Then you can watch pdf in github releases.
 
 ### Optional. cleaning
 
