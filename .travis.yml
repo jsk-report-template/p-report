@@ -4,23 +4,26 @@ compiler:
 - gcc
 matrix:
   include:
-    - os: linux
-      dist: trusty
-      sudo: required
-    - os: osx
+  - os: linux
+    dist: trusty
+    sudo: required
+  - os: osx
   allow_failures:
-    - os: osx
+  - os: osx
   fast_finish: true
 before_script:
-- if [ $TRAVIS_OS_NAME == "osx" ]; then brew update -y; else sudo apt-get update -y -qq; fi
-- if [ $TRAVIS_OS_NAME != "osx" ]; then sudo apt-get install -y -qq build-essential; fi
+- if [ $TRAVIS_OS_NAME == "osx" ]; then brew update -y; else sudo apt-get update -y
+  -qq; fi
+- if [ $TRAVIS_OS_NAME != "osx" ]; then sudo apt-get install -y -qq build-essential;
+  fi
 script:
 - make pub VERBOSE=1
 deploy:
   provider: releases
   api_key:
-# replace with your github api key
-    secure: IZM72Tw/G4sXFDmBW/yhiY18+uma/I1AlBpl3L3M2ZpVrFRrlvvGrkJkhZC/NdfqfS12Os+lxYFW7lbY3AjFdJsAhUGT/Ve6VzWU0RmxwjQRxbXUKjE4zukfIxA1NI3COM449KV7zcFKdbkAeln0DeLJ6roBfHLuu9HT2DH97yYXzilkDN3cpPOgkPBcehcA0VNj1PhighdA1rs7apeMFR7IhlvswDOxSVBtnaJnNQxVnav1VlIIBQc63nHhtrQUxfYzYuL9Xg/cy6xi+8uok4smyc46/ZXvTj0zd4Si3mVj18mMb/xGVOLBIVut1JRfMqHozrHFhFC1RCylJeM4eEJXUkR2uvK/aUn2td/bmCG76BudTBeGCr+ne/pbYLGdVEASHRMgkNnrrwAljYl2NA7i5JtMVS439j9A5U1+pMyeuHqTNBqZGHKI7wejoYEK021rqs2zxKYeD8b1g+7ZitPjUGO8r/9tEm8f0GzTgCeqkZM8xqzqrmkZuDfx54qZXmfKChBAZAa6sNnhZCT5sqZ6sx0bY4JwDMPd2+5r4qVRueic8do6hm6xrPtPrX1XdaSQPJNlwN6znKfq1OYZ9GBaFEzYEz301z5WS3d6tuzWA8uyoLTW49Z40iIvtZocDT8ri9ZOhz1ZvDdgWc2L1fAW37AMAcppym5QLF9lcfQ=
+    secure: EKTStynt3E7ear6hXN9XKGwW4zz5SsoMq/u7FgxvVgKWAY4RUz8HtQcquF23YKf2fa6jhv12mABMLSjnpXLIV9whc0HCiLbbyLcCw9UZlO/JrQtTqAXCfS29cHG47O26QgCGUN3UWHa1MExPTCROXpJubTj7DFPh1H2DAYbirEduhZh1qp+3pZ+LCPBl6mF1EFCDiHo7bK6trmsvxsm93DTTVlJDrdQjNQubRAUAKTiBkkk3L6YuukMgv44knSM6My9NDMpM8u29MyBIdyS/4GqtRqS61wRKRfALnLvfPEm0pTD8oiLsgvQ1VAJdg+d0wY5tAh6AK2IpUT+/c3bcgzqaNYL8GQajs4MmEHh/RQAQTKK3YzAXBI9QcBi8hnnhFpEsc92KqQwMKyzWV5+X5gyya6+BjniSg2vFWcpLMVLbNHL/HG6jlOEfYPqQVE7Nptukaw3GojrLK9Ps/2jYg1KTXJkcqlJY6IP69GguwrYC00ueJ1sNqcvTCCLniIh5Yil6L3/ZFFw8HcemIF9M7rr+frbcJlyzqOg3qMsN1UWxJweqOOGu87Hkek6LhF4OxDOp0g5XkDDq7yjyp7ClASOLMe1TUhdWwnGFwqkXRRImhqz39LLL00D0CTcJnFb+giCnxcjXu/1dbbOmMBKIS7kxWmjwm2b1/TEd2Hzz1K4=
   file: p-report.pdf
+  skip_cleanup: true
   on:
+    repo: furushchev/p-report-template
     tags: true
