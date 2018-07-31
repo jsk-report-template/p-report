@@ -11,7 +11,7 @@ LATEXMK := $(shell command -v latexmk 2> /dev/null)
 LATEXMK_OPTION := -time -recorder -rules
 LATEXMK_EXEC := latexmk $(LATEXMK_OPTION)
 
-.PHONY: all install preview clean wipe
+.PHONY: all install preview forever publish pub clean wipe
 
 all: install
 	$(LATEXMK_EXEC) -pvc- $(TARGET)
@@ -21,6 +21,11 @@ preview: install
 
 forever: install
 	$(LATEXMK_EXEC) -pvc $(TARGET)
+
+%.tex.orig: %.tex
+	sed -i.orig -e's/、/，/g' -e's/。/．/g' $<
+publish: $(addsuffix .orig, $(wildcard *.tex src/*.tex)) all
+pub: publish
 
 clean: install
 	$(LATEXMK_EXEC) -c
