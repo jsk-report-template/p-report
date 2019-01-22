@@ -253,3 +253,6 @@ sympy-plots-for-*.tex/
 
 *.bb
 *.xbb
+
+# pdf
+p-report.pdf

@@ -8,7 +8,7 @@ $dvipdf = 'dvipdfmx %O -o %D %S';
 $makeindex = 'mendex %O -o %D %S';
 
 # update
-$compiling_cmd = "find . -type f -name '*.tex' -print0 | xargs -0 sed -i.orig -e 's/。/．/g; s/、/，/g'";
+# $compiling_cmd = "find . -type f -name '*.tex' -print0 | xargs -0 sed -i.orig -e 's/。/．/g; s/、/，/g'";
 
 # preview
 if ($^O eq 'darwin') {
