@@ -8,7 +8,10 @@ matrix:
     dist: trusty
     sudo: required
   - os: linux
-    dist: xenial 
+    dist: xenial
+    sudo: required
+  - os: linux
+    dist: bionic
     sudo: required
   - os: osx
   allow_failures:
