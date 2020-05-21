@@ -10,6 +10,7 @@ Latex template for p-report
 # only for ubuntu 12.04
 $ sudo apt-add-repository ppa:texlive-backports/ppa
 $ sudo apt-get update
+$ sudo apt-get install lsb-release
 ```
 
 ### 2. Edit LaTeX files
