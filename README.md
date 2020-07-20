@@ -1,8 +1,7 @@
-# p-report-template
+# p-report
+[![Build Status](https://travis-ci.org/jsk-report-template/p-report.svg?branch=master)](https://travis-ci.org/jsk-report-template/p-report)
 
 Latex template for p-report
-
-[![Build Status](https://travis-ci.org/jsk-report-template/p-report.svg?branch=master)](https://travis-ci.org/jsk-report-template/p-report)
 
 ### 1. Prerequisities
 
