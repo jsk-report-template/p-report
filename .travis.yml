@@ -23,13 +23,5 @@ before_script:
 - if [ $TRAVIS_OS_NAME != "osx" ]; then sudo apt-get install -y -qq build-essential;
   fi
 script:
-- make pub VERBOSE=1
-deploy:
-  provider: releases
-  api_key:
-    secure: EKTStynt3E7ear6hXN9XKGwW4zz5SsoMq/u7FgxvVgKWAY4RUz8HtQcquF23YKf2fa6jhv12mABMLSjnpXLIV9whc0HCiLbbyLcCw9UZlO/JrQtTqAXCfS29cHG47O26QgCGUN3UWHa1MExPTCROXpJubTj7DFPh1H2DAYbirEduhZh1qp+3pZ+LCPBl6mF1EFCDiHo7bK6trmsvxsm93DTTVlJDrdQjNQubRAUAKTiBkkk3L6YuukMgv44knSM6My9NDMpM8u29MyBIdyS/4GqtRqS61wRKRfALnLvfPEm0pTD8oiLsgvQ1VAJdg+d0wY5tAh6AK2IpUT+/c3bcgzqaNYL8GQajs4MmEHh/RQAQTKK3YzAXBI9QcBi8hnnhFpEsc92KqQwMKyzWV5+X5gyya6+BjniSg2vFWcpLMVLbNHL/HG6jlOEfYPqQVE7Nptukaw3GojrLK9Ps/2jYg1KTXJkcqlJY6IP69GguwrYC00ueJ1sNqcvTCCLniIh5Yil6L3/ZFFw8HcemIF9M7rr+frbcJlyzqOg3qMsN1UWxJweqOOGu87Hkek6LhF4OxDOp0g5XkDDq7yjyp7ClASOLMe1TUhdWwnGFwqkXRRImhqz39LLL00D0CTcJnFb+giCnxcjXu/1dbbOmMBKIS7kxWmjwm2b1/TEd2Hzz1K4=
-  file: p-report.pdf
-  skip_cleanup: true
-  on:
-    repo: furushchev/p-report-template
-    tags: true
+- make
+- make pub
