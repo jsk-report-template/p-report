@@ -3,16 +3,9 @@
 
 Latex template for p-report
 
-### 1. Prerequisities
+### 1. Edit LaTeX files
 
-```bash
-sudo apt-get update
-make install
-```
-
-### 2. Edit LaTeX files
-
-### 3. Make pdf
+### 2. Make pdf
 
 ```bash
 make
@@ -20,10 +13,14 @@ make
 latexmk -pvc p-report
 ```
 
-### 4. Make publication pdf
+### Optional. Convert Japanese punctuations
 
 ```bash
-make pub
+$ make pub
+# or
+$ make publish
+# will convert 「、」「。」 to 「，」「．」 in *.tex
+# Original files are backed up as *.tex.orig
 ```
 
 ### Optional. cleaning
