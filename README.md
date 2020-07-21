@@ -1,57 +1,32 @@
-# p-report-template
+# p-report
+[![Build Status](https://travis-ci.org/jsk-report-template/p-report.svg?branch=master)](https://travis-ci.org/jsk-report-template/p-report)
 
 Latex template for p-report
 
-[![Build Status](https://travis-ci.org/furushchev/p-report-template.svg)](https://travis-ci.org/furushchev/p-report-template)
+### 1. Edit LaTeX files
 
-### 1. Prerequisities
-
-```bash
-# only for ubuntu 12.04
-$ sudo apt-add-repository ppa:texlive-backports/ppa
-$ sudo apt-get update
-$ sudo apt-get install lsb-release
-```
-
-### 2. Edit LaTeX files
-
-### 3. Make pdf
+### 2. Make pdf
 
 ```bash
-$ make
+make
+# or
+latexmk -pvc p-report
 ```
 
-### 4. Release pdf
+### Optional. Convert Japanese punctuations
 
-- Install [Travis Command Line Tool](https://github.com/travis-ci/travis.rb#installation)
-- Enable Travis
-
-  ```bash
-  travis enable
-  travis setup releases --force
+```bash
+make pub
+# or
+make publish
+# will convert 「、」「。」 to 「，」「．」 in *.tex
+# Original files are backed up as *.tex.orig
 ```
-
-- After `travis` command, configuration like below will be appended to `.travis.yml`.
-
-  ```yaml
-deploy:
-  provider: releases
-  api_key: "GITHUB OAUTH TOKEN"
-  file: p-report.pdf
-  skip_cleanup: true
-  on:
-    tags: true
-```
-
-**NOTE** Please make sure you have `skip_cleanup` and `on: tags` is `true`
-
-
-- Push your tag by `git push --tags`. Then you can watch pdf in github releases.
 
 ### Optional. cleaning
 
 ```bash
-$ make clean
+make clean
 # or
-$ make wipe
+make wipe
 ```
